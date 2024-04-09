@@ -71,10 +71,10 @@ const props = defineProps({
     default: true,
   },
   // 默认的img
-  defaultImg : {
-      type : Array,
-      default : []
-  }
+  defaultImg: {
+    type: Array,
+    default: [],
+  },
 });
 
 const { proxy } = getCurrentInstance();
@@ -174,6 +174,8 @@ function handleDelete(file) {
   if (findex > -1 && uploadList.value.length === number.value) {
     fileList.value.splice(findex, 1);
     emit("update:modelValue", listToString(fileList.value));
+    emit("uploadDelete", fileList.value);
+
     return false;
   }
 }
@@ -188,6 +190,8 @@ function uploadedSuccessfully() {
     number.value = 0;
     console.log(fileList.value);
     emit("update:modelValue", listToString(fileList.value));
+    // 触发自定义事件，传递上传成功的数据
+    emit("uploadSuccess", fileList.value);
     proxy.$modal.closeLoading();
   }
 }

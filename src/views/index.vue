@@ -1,7 +1,9 @@
 <template>
   <div class="app-container home">
+
     <!-- 图片上传 -->
-    <ImageUpload :limit="1" :defaultImg="[{ name: '/profile/upload/2024/04/08/arwju-omp06_20240408153954A037.jpg',  uid: 1712561994781, url: 'http://10.46.4.215:8089/yc/profile/upload/2024/04/08/arwju-omp06_20240408153954A037.jpg' }]"></ImageUpload>
+    <ImageUpload  @uploadSuccess="uploadSuccess" @uploadDelete="uploadDelete" :limit="1" :defaultImg="[{ name: '/profile/upload/2024/04/08/arwju-omp06_20240408153954A037.jpg', 
+uid: 1712561994781, url: 'http://10.46.4.215:8089/yc/profile/upload/2024/04/08/arwju-omp06_20240408153954A037.jpg' }]"></ImageUpload>
     <el-row :gutter="20">
       <el-col :sm="24" :lg="24">
         <blockquote class="text-warning" style="font-size: 14px">
@@ -876,6 +878,14 @@ const version = ref('3.8.4')
 
 function goTarget(url) {
   window.open(url, '__blank')
+}
+
+const uploadSuccess = (file)=>{
+  console.log(file,'111111111');
+}
+const uploadDelete = (file)=>{
+  console.log(file,'22222222');
+
 }
 </script>
 
